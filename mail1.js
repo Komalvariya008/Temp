@@ -98,14 +98,14 @@ async function sendEmail(rowData, qrCodePath) {
     ],
   };
 
-  // Sending email
-  // transporter.sendMail(mailOptions, (error, info) => {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log("Email sent: " + info.response);
-  //   }
-  // });
+  Sending email
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
 }
 
 // Usage
