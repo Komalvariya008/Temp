@@ -1,0 +1,26 @@
+{
+  "name": "nodeqr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@loskir/styled-qr-code-node": "^1.5.1",
+    "canvas": "^2.11.2",
+    "excel4node": "^1.8.2",
+    "exceljs": "^4.4.0",
+    "fs": "^0.0.1-security",
+    "jsdom": "^24.0.0",
+    "nodemailer": "^6.9.13",
+    "qr-code-styling": "^1.6.0-rc.1",
+    "qr-code-styling-node": "^1.5.0",
+    "qr-image": "^3.2.0",
+    "qrcode": "^1.5.3",
+    "sharp": "^0.33.3",
+    "xlsx": "^0.18.5"
+  }
+}
