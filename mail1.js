@@ -2,7 +2,6 @@ const ExcelJS = require("exceljs");
 const { QRCodeCanvas } = require('@loskir/styled-qr-code-node'); // Import QRCodeCanvas
 const fs = require("fs");
 const nodemailer = require("nodemailer");
-const { type } = require("os");
 
 async function generateQRFromExcel(filePath) {
   // Initialize Excel workbook and read data
@@ -39,26 +38,10 @@ async function generateQRFromExcel(filePath) {
       const qrCodePath = `qrcodes/qr_code_row_${i + 2}.png`; // Path to save QR code image (starting from second row)
       const qrCode = new QRCodeCanvas({
         data: qrData,
-        image: 'abvp-logo-v1.png', 
-        imageOptions: { "hideBackgroundDots": true, "imageSize": 0.4, "margin": 0 },// Replace 'https://example.com/logo.png' with the direct URL to your logo image (PNG or JPG)
-        dotsOptions: {
-          type : 'rounded',
-          gradient: {
-            type: 'radial',
-            rotation: 45,
-            colorStops: [
-              { offset: 0, color: '#F97514' },// orange
-              { offset: 1, color: '#4267b2' }//green
-            ]
-          },
-          // cornersSquare: 300, // Corner radius in pixels
-            
-        },
-        // "dotsOptions": { "type": "extra-rounded", "color": "#6a1a4c" },
-        cornersSquareOptions : { "type": "extra-rounded", "color": "'#4267b2" }
+        color: { dark: "#000000", light: "#ffffff" }, // Set dark color to black and light color to white
+        imageOptions: { "hideBackgroundDots": true, "imageSize": 0.4, "margin": 0 },
       });
-      
-      //"png" | "jpg" 
+
       await qrCode.toFile(qrCodePath, 'png');
       console.log(`QR code for Row ${i + 2} created at ${qrCodePath}`);
       await sendEmail(values[i], qrCodePath); // Send email with QR code and rowData
@@ -78,16 +61,15 @@ const transporter = nodemailer.createTransport({
   service: "gmail", // E.g., "gmail"
   auth: {
     user: "komalvariya814@gmail.com",
-    // pass: "xyqq jzdv brdr bagy",
+    pass: "wnqc cjsj yvoo pxnc",
   },
 });
 
 async function sendEmail(rowData, qrCodePath) {
   // Email message
-  console.log(rowData);
   const mailOptions = {
     from: "komalvariya814@gmail.com",
-    to: rowData["EMAIL"], // Change 'Email' to 'EMAIL'
+    to: rowData["EMAIL"],
     subject: "QR Code",
     text: "Please find your QR code attached.",
     attachments: [
@@ -98,16 +80,15 @@ async function sendEmail(rowData, qrCodePath) {
     ],
   };
 
-  Sending email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
+      console.log('Error occurred: ', error);
     } else {
-      console.log("Email sent: " + info.response);
+      console.log('Email sent to ' + rowData["EMAIL"] + ': ' + info.response);
     }
   });
 }
 
 // Usage
-const excelFilePath = "./excel1.xlsx";
+const excelFilePath = "./excel2.xlsx";
 generateQRFromExcel(excelFilePath).catch(console.error);

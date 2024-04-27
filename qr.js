@@ -10,7 +10,7 @@ const options = {
     quality: 1,
     margin: 1,
     color: {
-        dark: '#4267b2',
+        dark: '#000000',
         light: '#ffffff'
     }
 };
@@ -62,5 +62,5 @@ if (!fs.existsSync("qrcodes")) {
 }
 
 // Usage
-const excelFilePath = "./Financial Sample.xlsx";
+const excelFilePath = "./excel1.xlsx";
 generateQRFromExcel(excelFilePath).catch(console.error);
