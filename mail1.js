@@ -38,7 +38,9 @@ async function generateQRFromExcel(filePath) {
       const qrCodePath = `qrcodes/qr_code_row_${i + 2}.png`; // Path to save QR code image (starting from second row)
       const qrCode = new QRCodeCanvas({
         data: qrData,
+      
         color: { dark: "#000000", light: "#ffffff" }, // Set dark color to black and light color to white
+        image:'abvp-logo-v1.png',
         imageOptions: { "hideBackgroundDots": true, "imageSize": 0.4, "margin": 0 },
       });
 
